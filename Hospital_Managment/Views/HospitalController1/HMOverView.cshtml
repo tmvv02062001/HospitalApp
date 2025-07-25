@@ -1,0 +1,458 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+
+
+ <!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Simple Dashboard</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background-color: #f4f6f8;
+            display: flex;
+           
+        }
+
+        /* Sidebar */
+        #sidebar {
+            width: 220px;
+            height: 100vh;
+            background-color: #006666;
+            color: white;
+            padding: 20px;
+            position: fixed;
+            left: 0;
+            top: 0;
+        }
+
+            #sidebar h2 {
+                margin-bottom: 30px;
+                font-size: 24px;
+                text-align: center;
+            }
+
+            #sidebar ul {
+                list-style-type: none;
+            }
+
+                #sidebar ul li {
+                    padding: 12px;
+                    margin-bottom: 10px;
+                    cursor: pointer;
+                    border-radius: 6px;
+                }
+
+                    #sidebar ul li:hover {
+                        background-color: #008888;
+                    }
+
+        /* Main Content */
+        #main {
+            margin-left: 240px;
+            padding: 20px;
+            width: 100%;
+            display: flex;
+        }
+
+        /* Top Bar */
+        #topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+            #topbar input {
+                padding: 8px;
+                width: 60%;
+                border-radius: 5px;
+                border: 1px solid #ccc;
+            }
+
+        #overview {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            flex: 1;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 1px 5px rgba(0,0,0,0.1);
+        }
+
+        #activity {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 1px 5px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            padding: 10px;
+        }
+
+        td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        /* Right Panel */
+        #right-panel {
+            position: absolute;
+            right: 30px;
+            top: 120px;
+            width: 220px;
+            background-color: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0px 1px 5px rgba(0,0,0,0.1);
+        }
+
+            #right-panel p {
+                margin-bottom: 15px;
+            }
+
+            #right-panel button {
+                background-color: #00b894;
+                color: white;
+                border: none;
+                padding: 8px 12px;
+                border-radius: 6px;
+                cursor: pointer;
+            }
+
+                #right-panel button:hover {
+                    background-color: #0099;
+                }
+    </style>
+
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+    <script>
+        $(document).ready(function () {
+
+          // ✅ 1. Welcome Alert on Page Load
+          alert("Welcome to EasyDashboard bro! 🎉");
+
+          // ✅ 2. Click menu item from sidebar
+          $("#sidebar ul li").click(function () {
+            let item = $(this).text();
+            alert("You clicked: " + item);
+          });
+
+          // ✅ 3. Button click: Wish him
+          $("#right-panel button").click(function () {
+            alert("🎂 Birthday wish sent to Dwayne F. Sanders!");
+          });
+
+          // ✅ 4. Hide/Show cards (just for demo)
+          $(".card").click(function () {
+            $(this).fadeOut(500); // click card to hide
+          });
+
+        });
+    </script> 
+
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <div id="sidebar">
+        <h2>easywire</h2>
+        <ul>
+            <li>Home</li>
+            <li>Team</li>
+            <li>Tasks</li>
+            <li>Leaves</li>
+            <li>Projects</li>
+            <li>Timesheet</li>
+            <li>Contacts</li>
+            <li>Account</li>
+        </ul>
+    </div>
+
+    <div id="main">
+        <div id="topbar">
+            <input type="text" placeholder="Search...">
+          
+        </div>
+
+        <div id="overview">
+            <div class="card">Patient_Details<br><b>Exisiting Patients 335</b></div>
+            <div class="card">Bills_Amount<br><b>Rs 19,500.45/-</b></div>
+            <div class="card">Total_Collection<br><b>Rs 20,65,009.00</b></div>
+        </div>
+        <br />
+
+        <div id="activity">
+            <h3>Recent Activity</h3>
+            <table border="1" cellpadding="10">
+                <tr>
+                    <th>Pat_Name</th>
+                    <th>Pat_Cause</th>
+                    <th>Surgery</th>
+                    <th>Doctor_Team</th>
+                    <th>Status</th>
+                </tr>
+                <tr>
+                    <td>aaaa</td>
+                    <td>mad</td>
+                    <td>Brain Damage</td>
+                    <td>Abc Team</td>
+                    <td><span>Success</span></td>
+                </tr>
+                <tr>
+                    <td>bbbb</td>
+                    <td>stomach_ache</td>
+                    <td>Apendix</td>
+                    <td>def Team</td>
+                    <td><span>Processing</span></td>
+                </tr>
+            </table>
+        </div>
+
+        <br />
+
+        <div id="right-panel">
+            <p><b>196</b><br>Number of staff</p>
+            <p><b>16</b><br>Number of leave</p>
+            <p><b>12</b><br>Profile update request</p>
+        </div> 
+    
+   </div>
+   <button id="loadDataBtn">Load AJAX Data</button>
+    <div id="ajaxResult" style="margin-top: 15px; padding: 10px; background: #fff; border-radius: 6px;"></div> 
+
+    </body>
+
+@*
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sidebar Drilldown Menu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .sidebar {
+            width: 250px;
+            padding: 15px;
+            background-color: #f5f5f5;
+            border-right: 1px solid #ccc;
+        }
+
+        .menu-item {
+            cursor: pointer;
+            padding: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .submenu {
+            margin-left: 25px;
+            display: none;
+        }
+
+            .submenu.show {
+                display: block;
+            }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <div class="menu-item" onclick="toggleSubmenu()">
+            📁 <span>Categories</span>
+        </div>
+        <div id="submenu" class="submenu">
+            <div class="menu-item">👤 Social</div>
+            <div class="menu-item">ℹ️ Updates</div>
+            <div class="menu-item">💬 Forums</div>
+            <div class="menu-item">🏷️ Promotions</div>
+        </div>
+
+        <div class="menu-item">
+            ⚙️ Manage Labels
+        </div>
+        <div class="menu-item">
+            ➕ Create New Label
+        </div>
+    </div>
+
+    <script>
+        function toggleSubmenu() {
+          document.getElementById("submenu").classList.toggle("show");
+        }
+    </script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@* 
+<head>
+    <style>
+        .form-container
+        {
+            text-align:center;
+        }
+        #pd
+        {
+            text-align:left;
+        }
+        #dd
+        {
+            text-align:center;
+        }
+        #hd
+        {
+            text-align:right;
+        }
+    </style>
+
+    <script type="text/javascript">
+    $(document).ready (function()
+    {
+        $.ajax
+        ({
+            url:"",
+            type:"",
+            data :,
+            success : function ()
+            {
+                //window.location.href = "/HospitalController1/";
+            },
+            Error : function () {}
+        });
+    }),  
+    </script>
+</head>
+
+<body>
+    <h2>Hospital_Managment</h2>
+
+    <div class="form-container">
+    
+        <form class="HMOverView">
+        
+            <p id="pd">Patient_Details</p>
+
+                <select class="form-select" id="pd">
+                    <option value="addDetails" href="/HospitalController1/BillingDetails/">Add Patient</option> 
+                    <option value="delete" href="/HospitalController1/ReadPatient/">Delete Patient</option>
+                    <option value="edit" href="/HospitalController1/ReadPatient/">Edit Patient</option>
+                </select>
+            
+
+            <p id="dd">Doctor_Details</p>
+
+           <select class="form-select" id="dd">
+               <option value="adddoctor" href="/HospitalController1/BillingDetails/">Add Doctor</option>
+               <option value="editdoctor" href="/HospitalController1/ReadPatient/">Edit Doctor</option>
+                <option value="delete" href="/HospitalController1/ReadPatient/">Delete Patient</option>
+           </select>
+
+            <p id="hd">Hospital_Details</p>
+
+            <select class="form-select" id="hd">
+                <option value="addhospital" href="/HospitalController1/BillingDetails/">Add Hospital</option>
+                <option value="deletehospital" href="/HospitalController1/ReadPatient/">delete</option>
+                <option value="edithospital" href="/HospitalController1/ReadPatient/">Edit</option>
+            </select>
+            
+        </form>
+        
+    </div>
+
+</body>
+ *@

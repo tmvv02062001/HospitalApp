@@ -1,0 +1,125 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<head>
+    <style>
+        table,th,td
+        {
+            text-align:center;
+            border: 2px solid black;
+            padding: 10px;
+            text-align: center;
+            width: 100%;
+            border-collapse: collapse;
+        }
+        thead
+        {
+           background-color:black;
+            color:White;
+        }
+        tbody
+        {
+            background-color: lightskyblue
+        }
+    </style>
+
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+        
+        $(document).ready(function ()
+        {
+            $.ajax
+            ({
+                url:"/HospitalController1/PatientDetails",
+                type:"GET",
+                data: {},
+                success : function(response)
+                {
+                    console.log("check responce:" , response);
+
+                    var bd = $('#table tbody');
+                    bd.empty();
+
+                    $.each(response, function(index, bill)
+                    {
+                        var bds =
+                        `<tr>
+                            <td>${bill.bId}</td>
+                            <td>${bill.pName}</td>
+                            <td>${bill.pGender}</td>
+                            <td>${bill.pCause}</td>
+                            <td>${bill.dName}</td>
+                            <td>${bill.dSpecs}</td>
+                            <td>${bill.hName}</td>
+                            <td>${bill.hAddress}</td>
+                            <td>${bill.hPhone}</td>
+                            <td>${bill.bAmount}</td>
+                            <td>${bill.bMode}</td>
+                            <td><input type="button" onclick="editdetails(${bill.bId})" value="Edit" /> </td>
+                            <td><input type="button" onclick="Delete(${bill.bId})" value="Delete" /> </td>
+                        </tr>`;
+                        bd.append(bds);
+                    });
+                },
+                Error : function(xhr, status, error)
+                {
+                    console.log("Error occured:", error );
+                }
+            });
+        });
+        function editdetails(edit)
+        {
+            window.location.href = "/HospitalController1/editView?id=" + edit;
+        }
+
+        function Delete(bId)
+        {
+            $.ajax
+            ({
+                url:"DeleteBP",
+                type:"GET",
+                data : {id : bId},
+                success : function(response)
+                {
+                    alert("Deleted:" + response);
+                    window.location.href = "/HospitalController1/ReadPatient";
+                },
+                error :function(error, status, xhr)
+                {
+                    alert("Error:" , error);
+                }
+            });
+        };
+    </script>
+</head>
+<body>
+
+    <table id="table">
+        <thead>
+            <tr>
+                <th>Billing_Id</th>
+                <th>Patient_Name</th>
+                <th>Patient_Gender</th>
+                <th>Patient_Cause</th>
+                <th>Doctor_Name</th>
+                <th>Doctor_Specs</th>
+                <th>Hospital_Name</th>
+                <th>Hospital_Address</th>
+                <th>Hospital_PhoneNo</th>
+                <th>Billing_Amount</th>
+                <th>Billing_Mode</th>
+                <th>Edit_Details</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+        </tbody>
+    </table>
+</body>
